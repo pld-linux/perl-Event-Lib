@@ -18,6 +18,7 @@ URL:		http://search.cpan.org/dist/Event-Lib/
 BuildRequires:	libevent-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
+Requires:	perl-dirs >= 2.1-16
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
