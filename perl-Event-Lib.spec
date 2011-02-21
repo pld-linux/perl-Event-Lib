@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	tests		# do not perform "make test"
+%bcond_with	tests		# perform "make test"
 #
 %include	/usr/lib/rpm/macros.perl
 %define	pdir	Event
@@ -23,7 +23,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This module is a Perl wrapper around libevent(3) as available from
-http://www.monkey.org/~provos/libevent/. It allows to execute a
+<http://www.monkey.org/~provos/libevent/>. It allows to execute a
 function whenever a given event on a filehandle happens, a timeout
 occurs or a signal is received.
 
@@ -31,19 +31,19 @@ Under the hood, one of the available mechanisms for asynchronously
 dealing with events is used. This could be select, poll, epoll,
 devpoll or kqueue. The idea is that you don't have to worry about
 those details and the various interfaces they offer. Event::Lib offers
-a unified interface to all of them (but see "CONFIGURATION" further
-below).
-
-Once you've skimmed through the next two sections (or maybe even now),
-you should have a look at "EXAMPLE: A SIMPLE TCP SERVER" to get a
-feeling about how it all fits together.
-
-There's also a section briefly mentioning other event modules on the
-CPAN and how they differ from Event::Lib further below ("OTHER EVENT
-MODULES").
+a unified interface to all of them.
 
 %description -l pl.UTF-8
-Moduł ten opakowuje libevent.
+Moduł ten jest perlowym opakowaniem biblioteki libevent(3) dostępnej
+pod adresem <http://www.monkey.org/~provos/libevent/>. Pozwala na
+wywołanie funkcji w przypadku określonego zdarzenia na uchwycie
+pliku, upłynięcia limitu czasu lub odebrania sygnału.
+
+Wewnątrz używany jest jeden z dostępnych mechanizmów do asynchronicznej
+obsługi zdarzeń - może to być select, poll, epoll, devpoll lub kqueue.
+Idea jest taka, że programista nie musi martwić się o szczegóły
+związane z każdym z tych interfejsów. Event::Lib oferuje ujednolicony
+interfejs do nich wszystkich.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
@@ -69,8 +69,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changes README
-%{perl_vendorarch}/Event/*.pm
+%{perl_vendorarch}/Event/Lib.pm
 %dir %{perl_vendorarch}/auto/Event/Lib
-%{perl_vendorarch}/auto/Event/Lib/*.bs
-%attr(755,root,root) %{perl_vendorarch}/auto/Event/Lib/*.so
-%{_mandir}/man3/*
+%{perl_vendorarch}/auto/Event/Lib/Lib.bs
+%attr(755,root,root) %{perl_vendorarch}/auto/Event/Lib/Lib.so
+%{_mandir}/man3/Event::Lib.3pm*
