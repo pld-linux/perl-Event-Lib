@@ -71,6 +71,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc Changes README
 %{perl_vendorarch}/Event/Lib.pm
 %dir %{perl_vendorarch}/auto/Event/Lib
-%{perl_vendorarch}/auto/Event/Lib/Lib.bs
 %attr(755,root,root) %{perl_vendorarch}/auto/Event/Lib/Lib.so
 %{_mandir}/man3/Event::Lib.3pm*
