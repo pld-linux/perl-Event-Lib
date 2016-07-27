@@ -1,20 +1,22 @@
 #
 # Conditional build:
 %bcond_with	tests		# perform "make test"
-#
-%include	/usr/lib/rpm/macros.perl
+
 %define	pdir	Event
 %define	pnam	Lib
+%include	/usr/lib/rpm/macros.perl
 Summary:	Event::Lib - Perl extentions for event-based programming
 Summary(pl.UTF-8):	Event::Lib - rozszerzenie Perla dla programowania opertego na zdarzeniach
 Name:		perl-Event-Lib
-Version:	1.03
-Release:	9
+Version:	1.04
+Release:	1
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/Event/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	90b60028f7f5836072e95c6d5b1d069e
-URL:		http://search.cpan.org/dist/Event-Lib/
+#Source0:	http://www.cpan.org/modules/by-module/Event/%{pdir}-%{pnam}-%{version}.tar.gz
+Source0:	http://search.cpan.org/CPAN/authors/id/C/CR/CRUX/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	38bc3b6b9bf44740275dad9198e702fc
+#URL:		http://search.cpan.org/dist/Event-Lib/
+URL:		http://search.cpan.org/~crux/Event-Lib/
 BuildRequires:	libevent-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -36,14 +38,14 @@ a unified interface to all of them.
 %description -l pl.UTF-8
 Moduł ten jest perlowym opakowaniem biblioteki libevent(3) dostępnej
 pod adresem <http://www.monkey.org/~provos/libevent/>. Pozwala na
-wywołanie funkcji w przypadku określonego zdarzenia na uchwycie
-pliku, upłynięcia limitu czasu lub odebrania sygnału.
+wywołanie funkcji w przypadku określonego zdarzenia na uchwycie pliku,
+upłynięcia limitu czasu lub odebrania sygnału.
 
-Wewnątrz używany jest jeden z dostępnych mechanizmów do asynchronicznej
-obsługi zdarzeń - może to być select, poll, epoll, devpoll lub kqueue.
-Idea jest taka, że programista nie musi martwić się o szczegóły
-związane z każdym z tych interfejsów. Event::Lib oferuje ujednolicony
-interfejs do nich wszystkich.
+Wewnątrz używany jest jeden z dostępnych mechanizmów do
+asynchronicznej obsługi zdarzeń - może to być select, poll, epoll,
+devpoll lub kqueue. Idea jest taka, że programista nie musi martwić
+się o szczegóły związane z każdym z tych interfejsów. Event::Lib
+oferuje ujednolicony interfejs do nich wszystkich.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
