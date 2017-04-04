@@ -9,7 +9,7 @@ Summary:	Event::Lib - Perl extentions for event-based programming
 Summary(pl.UTF-8):	Event::Lib - rozszerzenie Perla dla programowania opertego na zdarzeniach
 Name:		perl-Event-Lib
 Version:	1.04
-Release:	2
+Release:	3
 License:	GPL v1+ or Artistic
 Group:		Development/Languages/Perl
 #Source0:	http://www.cpan.org/modules/by-module/Event/%{pdir}-%{pnam}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Source0:	http://search.cpan.org/CPAN/authors/id/C/CR/CRUX/%{pdir}-%{pnam}-%{vers
 # Source0-md5:	38bc3b6b9bf44740275dad9198e702fc
 #URL:		http://search.cpan.org/dist/Event-Lib/
 URL:		http://search.cpan.org/~crux/Event-Lib/
+Patch0:		libevent-2.1.patch
 BuildRequires:	libevent-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -49,6 +50,7 @@ oferuje ujednolicony interfejs do nich wszystkich.
 
 %prep
 %setup -q -n %{pdir}-%{pnam}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL \

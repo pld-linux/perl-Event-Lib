@@ -1,0 +1,38 @@
+--- Event-Lib-1.04/Lib.xs~	2014-09-23 09:06:55.000000000 +0200
++++ Event-Lib-1.04/Lib.xs	2017-04-04 19:35:35.623351764 +0200
+@@ -128,7 +128,7 @@
+ void refresh_event (struct event_args *args, char *class) {
+     SV *sv = newSV(0);
+     sv_setref_pv(sv, class, (void*)args);
+-    args->ev.ev_arg = (void*)sv;
++    args->ev.ev_evcallback.evcb_arg = (void*)sv;
+ }
+ 
+ SV * do_exception_handler (pTHX_ short event, SV *ev, SV *err) {
+@@ -208,7 +208,7 @@
+      * handlers, in which case the ref-cnt has already been decremented */
+     if (!event_pending(&args->ev, event, NULL)) {
+ 	EvEVENT_SET_off(args);
+-    	SvREFCNT_dec((SV*)args->ev.ev_arg);
++    	SvREFCNT_dec((SV*)args->ev.ev_evcallback.evcb_arg);
+ 	if (SvOK(ev))
+ 	    DEBUG_trace(args);
+     }
+@@ -582,7 +582,7 @@
+ 	}
+ 	
+ 	/* Nope, it's another event so it's ok to increment the ref-cnt */
+-	SvREFCNT_inc((SV*)args->ev.ev_arg);
++	SvREFCNT_inc((SV*)args->ev.ev_evcallback.evcb_arg);
+ 	DEBUG_record_event(aTHX_ ST(0));
+ 	DEBUG_trace(args);
+ 	XSRETURN(1);
+@@ -689,7 +689,7 @@
+ 	    /* We are not using ST(0) here but instead the loop-back
+ 	     * object stored inside the event because this is what is
+ 	     * decremented in do_callback and incremented in event_add */
+-	    SvREFCNT_dec((SV*)args->ev.ev_arg);
++	    SvREFCNT_dec((SV*)args->ev.ev_evcallback.evcb_arg);
+ 
+ 	DEBUG_trace(args);
+     }
