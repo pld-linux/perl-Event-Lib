@@ -4,7 +4,6 @@
 
 %define	pdir	Event
 %define	pnam	Lib
-%include	/usr/lib/rpm/macros.perl
 Summary:	Event::Lib - Perl extentions for event-based programming
 Summary(pl.UTF-8):	Event::Lib - rozszerzenie Perla dla programowania opertego na zdarzeniach
 Name:		perl-Event-Lib
